@@ -368,6 +368,9 @@
         }
 
         document.onkeydown = function() {
+            if(event.key == "Enter"){
+                buttonSubmit();
+            }
             if (event.keyCode == 8){ // backspace
             let now = document.getElementById("input".concat(nowInput, String(cursor)));
                 if (cursor <= WORD_SIZE && cursor > 1) {
