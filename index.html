@@ -206,7 +206,7 @@
                     myAnswer[i].classList.add("false");
                 }else if (myAnswer[i].value.toLowerCase() == answer[i]){
                     let btnElem = document.getElementById("btn".concat(myAnswer[i].value.toUpperCase()))
-                    if (btnElem.classList.contains("correct") || btnElem.classList.contains("miss") || btnElem.classList.contains("false")){
+                    if (btnElem.classList.contains("correct") || btnElem.classList.contains("false")){
 
                     } else {
                         btnElem.classList.add("correct")
