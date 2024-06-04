@@ -170,7 +170,7 @@
             <button id="btnK" class="belowIndicator">K</button>
             <button id="btnL" class="belowIndicator">L</button>
             <br/>
-            <button class="belowIndicator belowInputs">ENTER</button>
+            <button id="btnEnter" class="belowIndicator belowInputs">ENTER</button>
             <button id="btnZ" class="belowIndicator">Z</button>
             <button id="btnX" class="belowIndicator">X</button>
             <button id="btnC" class="belowIndicator">C</button>
@@ -191,9 +191,13 @@
         const WORD_SIZE = 5;
         const WORD_CHANCE = 6;
 
+        let opCode = 0;
         let answer = ANSWER_LIST[Math.floor(Math.random() * (ANSWER_LIST.length) + 0)];
         var nowInput = 1;
         var cursor = 1;
+        var end = false;
+
+        console.log(answer);
 
         var inputs = document.querySelectorAll(".input");
         inputs.forEach(element => { // input 요소에 'focus' 이벤트 리스너를 추가합니다.
@@ -207,7 +211,9 @@
             element.addEventListener('click', function() {
                 let value = element.innerHTML;
                 
-                if (value == "ENTER"){
+                if (end){
+
+                } else if (value == "ENTER"){
                     buttonSubmit();
                 } else if (value == "BACK") {
                     let now = document.getElementById("input".concat(nowInput, String(cursor)));
@@ -225,7 +231,7 @@
                         }, 0);
                     document.getElementById("input".concat(String(nowInput), String(cursor))).value = '';
                     }
-                } else{
+                } else {
                     let input = document.getElementById("input".concat(String(nowInput), String(cursor)));
                     let next = document.getElementById("input".concat(nowInput, String(cursor + 1)));
                     if (input != null){
@@ -247,8 +253,6 @@
             });
         });
 
-        console.log(`ANSWER: ${answer}`);
-
         function buttonSubmit() {
             let nowAnswering = ".input".concat(String(nowInput));
             let myAnswer = document.querySelectorAll(nowAnswering);
@@ -260,15 +264,16 @@
             
             var words = "";
             myAnswer.forEach((a, i)=>{words = words.concat(a.value);});
-
-            if (!WORD_LIST.includes(words.toLocaleLowerCase())){
+            
+            if (!WORD_LIST.includes(words.toLocaleLowerCase()) && opCode == 0){
                 alert("되먹은 단어가 아님;");
             }
             else {
                 for (var i = 0; i < WORD_SIZE; i += 1) {
-                    // 초기화
+                    // 꺼버리기
                     myAnswer[i].setAttribute("disabled", true);
                     
+                    // 맞는지 안맞는지 판정 드가기
                     if (myAnswer[i].value.toLowerCase() == ''){ //nullCheck
                         myAnswer[i].classList.add("false");
                     }else if (myAnswer[i].value.toLowerCase() == answer[i]){
@@ -312,6 +317,7 @@
                         submitButton.classList.add("toNextButton");
                         cursor = 0;
                     }
+                    end = true;
                 }else if (nowInput < WORD_CHANCE) { // 다음 줄로 넘어가기
                     nowInput += 1;
                     cursor = 1;
@@ -320,6 +326,9 @@
                         setTimeout(() => { // 이거 안하면 DOM 업데이트 어쩌고 때문에 안된다는 소문이 있었는데 이윽고 그 소문이 사실로 밝혀졌던 역사가 있음.
                             nextFirst.focus();
                         }, 0);
+                    }
+                    for (var i = 0; i < WORD_SIZE; i += 1) {
+                        nextAnswer[i].removeAttribute("disabled");
                     }
                 } else{ // 전체 오답
                     let submitButton = document.querySelector(".submitButton")
@@ -334,11 +343,7 @@
                         cursor = 0;
                         document.querySelector(".upsideBar").innerHTML = `§ Here's The Answer For Loosers: "${answer.toUpperCase()}" §`;
                     }
-                }
-                if (nextAnswer[0] != undefined){
-                    for (var i = 0; i < WORD_SIZE; i += 1) {
-                        nextAnswer[i].removeAttribute("disabled");
-                    }
+                    end = true;
                 }
             }
         }
@@ -369,52 +374,55 @@
                 }
             } else {
                 let now = document.getElementById("input".concat(nowInput, String(cursor)));
-
-            switch (keyCode){
-                case 65: now.value = 'A'; break;
-                case 66: now.value = 'B'; break;
-                case 67: now.value = 'C'; break;
-                case 68: now.value = 'D'; break;
-                case 69: now.value = 'E'; break;
-                case 70: now.value = 'F'; break;
-                case 71: now.value = 'G'; break;
-                case 72: now.value = 'H'; break;
-                case 73: now.value = 'I'; break;
-                case 74: now.value = 'J'; break;
-                case 75: now.value = 'K'; break;
-                case 76: now.value = 'L'; break;
-                case 77: now.value = 'M'; break;
-                case 78: now.value = 'N'; break;
-                case 79: now.value = 'O'; break;
-                case 80: now.value = 'P'; break;
-                case 81: now.value = 'Q'; break;
-                case 82: now.value = 'R'; break;
-                case 83: now.value = 'S'; break;
-                case 84: now.value = 'T'; break;
-                case 85: now.value = 'U'; break;
-                case 86: now.value = 'V'; break;
-                case 87: now.value = 'W'; break;
-                case 88: now.value = 'X'; break;
-                case 89: now.value = 'Y'; break;
-                case 90: now.value = 'Z'; break;
-            }
-
-            if (now.value != ''){
-                if (cursor < WORD_SIZE){
-                    cursor += 1;
+                if (now != null){
+                    switch (keyCode){
+                        case 65: now.value = 'A'; break;
+                        case 66: now.value = 'B'; break;
+                        case 67: now.value = 'C'; break;
+                        case 68: now.value = 'D'; break;
+                        case 69: now.value = 'E'; break;
+                        case 70: now.value = 'F'; break;
+                        case 71: now.value = 'G'; break;
+                        case 72: now.value = 'H'; break;
+                        case 73: now.value = 'I'; break;
+                        case 74: now.value = 'J'; break;
+                        case 75: now.value = 'K'; break;
+                        case 76: now.value = 'L'; break;
+                        case 77: now.value = 'M'; break;
+                        case 78: now.value = 'N'; break;
+                        case 79: now.value = 'O'; break;
+                        case 80: now.value = 'P'; break;
+                        case 81: now.value = 'Q'; break;
+                        case 82: now.value = 'R'; break;
+                        case 83: now.value = 'S'; break;
+                        case 84: now.value = 'T'; break;
+                        case 85: now.value = 'U'; break;
+                        case 86: now.value = 'V'; break;
+                        case 87: now.value = 'W'; break;
+                        case 88: now.value = 'X'; break;
+                        case 89: now.value = 'Y'; break;
+                        case 90: now.value = 'Z'; break;
+                    }
+                
+                    if (now.value != '') {
+                        if (cursor < WORD_SIZE){
+                            cursor += 1;
+                        }
+                        let next = document.getElementById("input".concat(nowInput, String(cursor)));
+                        if (next !== null) {
+                            setTimeout(() => {
+                                next.focus();
+                            }, 0);
+                        }
+                    }
                 }
-                let next = document.getElementById("input".concat(nowInput, String(cursor)));
-                if (next !== null) {
-                    setTimeout(() => {
-                        next.focus();
-                    }, 0);
-                }
-            }
             }
         }
 
         document.onkeydown = function() {
-            if(event.key == "Enter"){
+            if (end){
+                
+            }else if(event.keyCode == 13){ // enter
                 buttonSubmit();
             }else if (event.keyCode == 8){ // backspace
             let now = document.getElementById("input".concat(nowInput, String(cursor)));
