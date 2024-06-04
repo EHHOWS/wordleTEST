@@ -209,7 +209,8 @@
                     if (btnElem.classList.contains("correct") || btnElem.classList.contains("false")){
 
                     } else {
-                        btnElem.classList.add("correct")
+                        btnElem.classList.remove("miss");
+                        btnElem.classList.add("correct");
                     }
                     myAnswer[i].classList.add("correct");
                     correctCnt += 1;
