@@ -15,16 +15,18 @@
             margin: 0 auto;
             text-align: center;
         }
+
         .upsideBar{
             width: 100%;
-            height: 80px;
+            height: 85px;
             background-color: black;
             font-size: 40px;
             color: white;
             text-align: center;
-            line-height: 80px; 
+            line-height: 85px; 
             margin-bottom: 25px;
         }
+
         .input{
             width: 50px;
             height: 50px;
@@ -34,6 +36,7 @@
             margin-bottom: 16px;
             display: inline-block;
         }
+
         .submitButton{
             width: 250px;
             height: 50px;
@@ -45,6 +48,16 @@
         .submitButton:hover, .submitButton:focus{
             background-color: rgb(250, 250, 250);
         }
+
+        .toNextButton{
+            font-size: 30px !important;
+            color: rgb(55, 55, 55) !important;
+            background-color: rgb(160, 160, 160) !important;
+        }
+        .toNextButton:hover, .toNextButton:focus{
+            background-color:rgb(180, 180, 180) !important;
+        }
+
         .belowIndicator{
             width: 48px;
             height: 48px;
@@ -54,19 +67,34 @@
             border-radius: 5px;
         }
         .belowIndicator:hover, .button:focus{
-            background-color: rgb(250, 250, 250);
+            background-color: rgb(255, 255, 255);
         }
+
         .belowInputs{
             width: 100px !important;
         }
-        .correct{
-            background-color: green;
+
+        .input.correct, .input.miss, .input.false{
+            border-color: transparent !important;
         }
-        .miss{
+
+        .correct, .input.correct:hover, .input.correct:focus{
+            background-color: olivedrab;
+        }
+        .correct:hover, .correct:focus{
+            background-color: rgba(106, 142, 35, 0.829);
+        }
+        .miss, .input.miss:hover, .input.miss:focus{
             background-color: yellow;
         }
-        .false{
+        .miss:hover, .miss:focus{
+            background-color: rgba(255, 255, 0, 0.8);
+        }
+        .false, .input.false:hover, .input.false:focus{
             background-color: gray;
+        }
+        .false:hover, .false:focus{
+            background-color: rgb(150, 150, 150);
         }
     </style>
 
@@ -116,7 +144,7 @@
                 <input id="input65" class="input input6" disabled oninput="onInput();" onkeypress="return inputEnter(event)" maxlength="1">
             </div>
             <div>
-                <button class="submitButton">제출</button>
+                <button class="submitButton">SUBMIT</button>
             </div>
         </div>
         <div style="padding-top: 50px;">
@@ -199,14 +227,16 @@
                 } else{
                     let input = document.getElementById("input".concat(String(nowInput), String(cursor)));
                     let next = document.getElementById("input".concat(nowInput, String(cursor + 1)));
-                    input.value = value;
+                    if (input != null && next != null){
+                        input.value = value;
                     if (cursor < WORD_SIZE){
                         cursor += 1;
-                    }
-                    if (next != null){
-                        setTimeout(() => { // 이거 안하면 DOM 업데이트 어쩌고 때문에 안된다는 소문이 있었는데 이윽고 그 소문이 사실로 밝혀졌던 역사가 있음.
-                            next.focus();
-                        }, 0);
+                        }
+                        if (next != null){
+                            setTimeout(() => { // 이거 안하면 DOM 업데이트 어쩌고 때문에 안된다는 소문이 있었는데 이윽고 그 소문이 사실로 밝혀졌던 역사가 있음.
+                                next.focus();
+                            }, 0);
+                        }
                     }
                 }
             });
@@ -266,12 +296,17 @@
                 }
                 
                 if (correctCnt == WORD_SIZE){ // 정답
+                    let submitButton = document.querySelector(".submitButton")
                     setTimeout(() => { 
                         alert("정답입니다.");
-                    }, 1500);
-                    setTimeout(() => { 
-                        location.reload(true);
-                    }, 1500);
+                    }, 0);
+                    if (submitButton != null){
+                        submitButton.innerHTML = " CONTINUE";
+                        submitButton.removeEventListener("click", buttonSubmit);
+                        submitButton.addEventListener("click", ()=>{location.reload(true);})
+                        submitButton.classList.add("toNextButton");
+                        cursor = 0;
+                    }
                 }else if (nowInput < WORD_CHANCE) { // 다음 줄로 넘어가기
                     nowInput += 1;
                     cursor = 1;
@@ -282,12 +317,17 @@
                         }, 0);
                     }
                 } else{ // 전체 오답
+                    let submitButton = document.querySelector(".submitButton")
                     setTimeout(() => { 
                         alert(`끝끝내 오답입니다.\n정답은 ${answer}임`);
-                    }, 1500);
-                    setTimeout(() => { 
-                        location.reload(true);
-                    }, 1500);
+                    }, 0);
+                    if (submitButton != null){
+                        submitButton.innerHTML = "CONTINUE";
+                        submitButton.removeEventListener("click", buttonSubmit);
+                        submitButton.addEventListener("click", ()=>{location.reload(true);})
+                        submitButton.classList.add("toNextButton");
+                        cursor = 0;
+                    }
                 }
                 if (nextAnswer[0] != undefined){
                     for (var i = 0; i < WORD_SIZE; i += 1) {
