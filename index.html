@@ -211,7 +211,7 @@
             var words = "";
             myAnswer.forEach((a, i)=>{words = words.concat(a.value);});
 
-            if (!WORD_LIST.includes(words)){
+            if (!WORD_LIST.includes(words.toLocaleLowerCase())){
                 alert("되먹은 단어가 아님;");
             }
             else {
