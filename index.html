@@ -268,6 +268,8 @@
                 if (correctCnt == WORD_SIZE){ // 정답
                     setTimeout(() => { 
                         alert("정답입니다.");
+                    }, 1500);
+                    setTimeout(() => { 
                         location.reload(true);
                     }, 1500);
                 }else if (nowInput < WORD_CHANCE) { // 다음 줄로 넘어가기
@@ -282,6 +284,8 @@
                 } else{ // 전체 오답
                     setTimeout(() => { 
                         alert(`끝끝내 오답입니다.\n정답은 ${answer}임`);
+                    }, 1500);
+                    setTimeout(() => { 
                         location.reload(true);
                     }, 1500);
                 }
