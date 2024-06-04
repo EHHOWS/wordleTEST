@@ -227,7 +227,7 @@
                 } else{
                     let input = document.getElementById("input".concat(String(nowInput), String(cursor)));
                     let next = document.getElementById("input".concat(nowInput, String(cursor + 1)));
-                    if (input != null && next != null){
+                    if (input != null){
                         input.value = value;
                     if (cursor < WORD_SIZE){
                         cursor += 1;
