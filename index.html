@@ -3,6 +3,7 @@
     <head>
         <title>WORDLE</title>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width", initial-scale=1 />
     </head>
   
     <style>
@@ -96,90 +97,148 @@
         .false:hover, .false:focus{
             background-color: rgb(150, 150, 150);
         }
+        @media (max-width: 767px){
+            .upsideBar{
+                width: 100%;
+                height: 55px;
+                background-color: black;
+                font-size: 30px;
+                color: white;
+                text-align: center;
+                line-height: 55px; 
+                margin-bottom: 25px;
+            }
+            .belowInputs{
+                width: 42px !important;
+                font-size: 9px !important;
+            }
+            .belowIndicator{
+                width: 35px;
+                height: 48px;
+                margin: 4px 1px 4px 1px;
+                font-size: 25px;
+                border-style: none;
+                border-radius: 5px;
+            }
+        }
+        /*미완성임 자꾸 오류남 이거 문제가 큼
+        @media (max-width: 1024px){
+            body{
+                margin: 0;
+                padding: 0;
+                background: lightgray;
+                display:table;
+            }
+            .mother{
+                display: flex;
+            }
+            .inputs{
+                margin: 0 auto;
+                text-align: center;
+                flex: 2;
+            }
+            .btns{
+                margin: 0 auto;
+                text-align: center;
+                flex: 5;
+            }
+            .upsideBar{
+                width: 100%;
+                height: 85px;
+                background-color: black;
+                font-size: 40px;
+                color: red;
+                text-align: center;
+                line-height: 85px; 
+                margin-bottom: 25px;
+            }
+        }*/
     </style>
 
     <body>
 
-        <div class="upsideBar">§ WORDLE §</div>
-        <div>
-            <div>
-                <input id="input11" class="input input1" readonly maxlength="1" autofocus>
-                <input id="input12" class="input input1" readonly maxlength="1">
-                <input id="input13" class="input input1" readonly maxlength="1">
-                <input id="input14" class="input input1" readonly maxlength="1">
-                <input id="input15" class="input input1" readonly maxlength="1">
+        <div class="upsideBar mother">§ WORDLE §</div>
+        <div class="mother">
+            <div class="inputs">
+                <div>
+                    <input id="input11" class="input input1" readonly maxlength="1" autofocus>
+                    <input id="input12" class="input input1" readonly maxlength="1">
+                    <input id="input13" class="input input1" readonly maxlength="1">
+                    <input id="input14" class="input input1" readonly maxlength="1">
+                    <input id="input15" class="input input1" readonly maxlength="1">
+                </div>
+                <div>
+                    <input id="input21" class="input input2" readonly disabled maxlength="1">
+                    <input id="input22" class="input input2" readonly disabled maxlength="1">
+                    <input id="input23" class="input input2" readonly disabled maxlength="1">
+                    <input id="input24" class="input input2" readonly disabled maxlength="1">
+                    <input id="input25" class="input input2" readonly disabled maxlength="1">
+                </div>
+                <div>
+                    <input id="input31" class="input input3" readonly disabled maxlength="1">
+                    <input id="input32" class="input input3" readonly disabled maxlength="1">
+                    <input id="input33" class="input input3" readonly disabled maxlength="1">
+                    <input id="input34" class="input input3" readonly disabled maxlength="1">
+                    <input id="input35" class="input input3" readonly disabled maxlength="1">
+                </div>
+                <div>
+                    <input id="input41" class="input input4" readonly disabled maxlength="1">
+                    <input id="input42" class="input input4" readonly disabled maxlength="1">
+                    <input id="input43" class="input input4" readonly disabled maxlength="1">
+                    <input id="input44" class="input input4" readonly disabled maxlength="1">
+                    <input id="input45" class="input input4" readonly disabled maxlength="1">
+                </div>
+                <div>
+                    <input id="input51" class="input input5" readonly disabled maxlength="1">
+                    <input id="input52" class="input input5" readonly disabled maxlength="1">
+                    <input id="input53" class="input input5" readonly disabled maxlength="1">
+                    <input id="input54" class="input input5" readonly disabled maxlength="1">
+                    <input id="input55" class="input input5" readonly disabled maxlength="1">
+                </div>
+                <div>
+                    <input id="input61" class="input input6" readonly disabled maxlength="1">
+                    <input id="input62" class="input input6" readonly disabled maxlength="1">
+                    <input id="input63" class="input input6" readonly disabled maxlength="1">
+                    <input id="input64" class="input input6" readonly disabled maxlength="1">
+                    <input id="input65" class="input input6" readonly disabled maxlength="1">
+                </div>
+                <div>
+                    <button class="submitButton">SUBMIT</button>
+                </div>
             </div>
-            <div>
-                <input id="input21" class="input input2" readonly disabled maxlength="1">
-                <input id="input22" class="input input2" readonly disabled maxlength="1">
-                <input id="input23" class="input input2" readonly disabled maxlength="1">
-                <input id="input24" class="input input2" readonly disabled maxlength="1">
-                <input id="input25" class="input input2" readonly disabled maxlength="1">
+            <div class="butns" style="padding-top: 50px;">
+                <button id="btnQ" class="belowIndicator">Q</button>
+                <button id="btnW" class="belowIndicator">W</button>
+                <button id="btnE" class="belowIndicator">E</button>
+                <button id="btnR" class="belowIndicator">R</button>
+                <button id="btnT" class="belowIndicator">T</button>
+                <button id="btnY" class="belowIndicator">Y</button>
+                <button id="btnU" class="belowIndicator">U</button>
+                <button id="btnI" class="belowIndicator">I</button>
+                <button id="btnO" class="belowIndicator">O</button>
+                <button id="btnP" class="belowIndicator">P</button>
+                <br/>
+                <button id="btnA" class="belowIndicator">A</button>
+                <button id="btnS" class="belowIndicator">S</button>
+                <button id="btnD" class="belowIndicator">D</button>
+                <button id="btnF" class="belowIndicator">F</button>
+                <button id="btnG" class="belowIndicator">G</button>
+                <button id="btnH" class="belowIndicator">H</button>
+                <button id="btnJ" class="belowIndicator">J</button>
+                <button id="btnK" class="belowIndicator">K</button>
+                <button id="btnL" class="belowIndicator">L</button>
+                <br/>
+                <button id="btnEnter" class="belowIndicator belowInputs">ENTER</button>
+                <button id="btnZ" class="belowIndicator">Z</button>
+                <button id="btnX" class="belowIndicator">X</button>
+                <button id="btnC" class="belowIndicator">C</button>
+                <button id="btnV" class="belowIndicator">V</button>
+                <button id="btnB" class="belowIndicator">B</button>
+                <button id="btnN" class="belowIndicator">N</button>
+                <button id="btnM" class="belowIndicator">M</button>
+                <button class="belowIndicator belowInputs">BACK</button>
             </div>
-            <div>
-                <input id="input31" class="input input3" readonly disabled maxlength="1">
-                <input id="input32" class="input input3" readonly disabled maxlength="1">
-                <input id="input33" class="input input3" readonly disabled maxlength="1">
-                <input id="input34" class="input input3" readonly disabled maxlength="1">
-                <input id="input35" class="input input3" readonly disabled maxlength="1">
-            </div>
-            <div>
-                <input id="input41" class="input input4" readonly disabled maxlength="1">
-                <input id="input42" class="input input4" readonly disabled maxlength="1">
-                <input id="input43" class="input input4" readonly disabled maxlength="1">
-                <input id="input44" class="input input4" readonly disabled maxlength="1">
-                <input id="input45" class="input input4" readonly disabled maxlength="1">
-            </div>
-            <div>
-                <input id="input51" class="input input5" readonly disabled maxlength="1">
-                <input id="input52" class="input input5" readonly disabled maxlength="1">
-                <input id="input53" class="input input5" readonly disabled maxlength="1">
-                <input id="input54" class="input input5" readonly disabled maxlength="1">
-                <input id="input55" class="input input5" readonly disabled maxlength="1">
-            </div>
-            <div>
-                <input id="input61" class="input input6" readonly disabled maxlength="1">
-                <input id="input62" class="input input6" readonly disabled maxlength="1">
-                <input id="input63" class="input input6" readonly disabled maxlength="1">
-                <input id="input64" class="input input6" readonly disabled maxlength="1">
-                <input id="input65" class="input input6" readonly disabled maxlength="1">
-            </div>
-            <div>
-                <button class="submitButton">SUBMIT</button>
-            </div>
-        </div>
-        <div style="padding-top: 50px;">
-            <button id="btnQ" class="belowIndicator">Q</button>
-            <button id="btnW" class="belowIndicator">W</button>
-            <button id="btnE" class="belowIndicator">E</button>
-            <button id="btnR" class="belowIndicator">R</button>
-            <button id="btnT" class="belowIndicator">T</button>
-            <button id="btnY" class="belowIndicator">Y</button>
-            <button id="btnU" class="belowIndicator">U</button>
-            <button id="btnI" class="belowIndicator">I</button>
-            <button id="btnO" class="belowIndicator">O</button>
-            <button id="btnP" class="belowIndicator">P</button>
-            <br/>
-            <button id="btnA" class="belowIndicator">A</button>
-            <button id="btnS" class="belowIndicator">S</button>
-            <button id="btnD" class="belowIndicator">D</button>
-            <button id="btnF" class="belowIndicator">F</button>
-            <button id="btnG" class="belowIndicator">G</button>
-            <button id="btnH" class="belowIndicator">H</button>
-            <button id="btnJ" class="belowIndicator">J</button>
-            <button id="btnK" class="belowIndicator">K</button>
-            <button id="btnL" class="belowIndicator">L</button>
-            <br/>
-            <button id="btnEnter" class="belowIndicator belowInputs">ENTER</button>
-            <button id="btnZ" class="belowIndicator">Z</button>
-            <button id="btnX" class="belowIndicator">X</button>
-            <button id="btnC" class="belowIndicator">C</button>
-            <button id="btnV" class="belowIndicator">V</button>
-            <button id="btnB" class="belowIndicator">B</button>
-            <button id="btnN" class="belowIndicator">N</button>
-            <button id="btnM" class="belowIndicator">M</button>
-            <button class="belowIndicator belowInputs">BACK</button>
-        </div>    
+        </div> 
     
     </body>
 
@@ -341,7 +400,7 @@
                         submitButton.addEventListener("click", ()=>{location.reload(true);})
                         submitButton.classList.add("toNextButton");
                         cursor = 0;
-                        document.querySelector(".upsideBar").innerHTML = `§ Here's The Answer For Loosers: "${answer.toUpperCase()}" §`;
+                        document.querySelector(".upsideBar").innerHTML = `§ "${answer.toUpperCase()}" §`;
                     }
                     end = true;
                 }
