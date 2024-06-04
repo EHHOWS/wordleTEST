@@ -327,6 +327,7 @@
                         submitButton.addEventListener("click", ()=>{location.reload(true);})
                         submitButton.classList.add("toNextButton");
                         cursor = 0;
+                        document.querySelector(".upsideBar").innerHTML = `§ Here's The Answer For Loosers: "${answer.toUpperCase()}" §`;
                     }
                 }
                 if (nextAnswer[0] != undefined){
